@@ -4,4 +4,4 @@ matplotlib
 seaborn
 scikit-learn
 flask
-pip install gunicorn
+gunicorn
