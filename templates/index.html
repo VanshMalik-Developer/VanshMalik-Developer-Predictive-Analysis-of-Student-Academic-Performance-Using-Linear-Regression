@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Student Performance Predictor</h1>
+            <p>Advanced Machine Learning Analytics for Educational Success</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="predictionForm">
+                <!-- Personal Information -->
+                <div class="section">
+                    <h3>👤 Personal Information</h3>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Age:</label>
+                            <div class="help-text">Student's current age (typically 15-25 years)</div>
+                            <input type="number" name="age" min="15" max="25" value="18" required>
+                            <div class="field-error" id="age-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <div class="help-text">Student's gender</div>
+                            <select name="gender" required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Information -->
+                <div class="section">
+                    <h3>📚 Academic Information</h3>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Weekly Study Time:</label>
+                            <div class="help-text">Hours spent studying per week</div>
+                            <select name="study_time" required>
+                                <option value="1">1 - Less than 2 hours</option>
+                                <option value="2" selected>2 - 2 to 5 hours</option>
+                                <option value="3">3 - 5 to 10 hours</option>
+                                <option value="4">4 - More than 10 hours</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Previous Failures:</label>
+                            <div class="help-text">Number of past class failures</div>
+                            <select name="failures" required>
+                                <option value="0" selected>0 - No failures</option>
+                                <option value="1">1 - One failure</option>
+                                <option value="2">2 - Two failures</option>
+                                <option value="3">3 - Three or more</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Absences:</label>
+                            <div class="help-text">Number of school absences this semester (0-30)</div>
+                            <input type="number" name="absences" min="0" max="30" value="5" required>
+                            <div class="field-error" id="absences-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>First Period Grade (G1):</label>
+                            <div class="help-text">Grade from first semester (0-20 scale)</div>
+                            <input type="number" name="G1" min="0" max="20" value="10" step="0.1" required>
+                            <div class="field-error" id="G1-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Second Period Grade (G2):</label>
+                            <div class="help-text">Grade from second semester (0-20 scale)</div>
+                            <input type="number" name="G2" min="0" max="20" value="10" step="0.1" required>
+                            <div class="field-error" id="G2-error"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & Resources -->
+                <div class="section">
+                    <h3>🏫 Support & Resources</h3>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>School Support:</label>
+                            <div class="help-text">Extra educational support at school</div>
+                            <select name="school_support" required>
+                                <option value="yes" selected>Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Family Support:</label>
+                            <div class="help-text">Family provides educational support</div>
+                            <select name="family_support" required>
+                                <option value="yes" selected>Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Paid Classes:</label>
+                            <div class="help-text">Takes extra paid classes</div>
+                            <select name="paid_classes" required>
+                                <option value="no" selected>No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Extra Activities:</label>
+                            <div class="help-text">Participates in extracurricular activities</div>
+                            <select name="activities" required>
+                                <option value="no" selected>No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Higher Education Goal:</label>
+                            <div class="help-text">Wants to pursue higher education</div>
+                            <select name="higher_ed" required>
+                                <option value="yes" selected>Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Internet Access:</label>
+                            <div class="help-text">Has internet access at home</div>
+                            <select name="internet" required>
+                                <option value="yes" selected>Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" id="predictBtn">🎯 Predict Final Grade</button>
+                    <button type="button" class="demo-btn" onclick="fillDemo()">📝 Quick Fill Demo</button>
+                </div>
+            </form>
+            
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

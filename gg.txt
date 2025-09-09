@@ -1,0 +1,16 @@
+─ README.md                 # Main project documentation
+├── COLLEGE_PROJECT_REPORT.md # Detailed technical report
+├── requirements.txt          # Dependencies
+├── student_data.csv         # Dataset
+├── app.py                   # Flask web application
+├── analysis.py              # Complete analysis script
+├── main_simple.py          # Command-line demo
+├── data_preprocessing.py   # Data cleaning module
+├── model.py                # ML model implementation
+├── evaluation.py           # Model evaluation
+├── visualization.py        # Data visualization
+├── templates/
+│   └── index.html         # Web interface
+├── static/                # CSS/JS assets
+└── .gitignore            # Git ignore file
+
