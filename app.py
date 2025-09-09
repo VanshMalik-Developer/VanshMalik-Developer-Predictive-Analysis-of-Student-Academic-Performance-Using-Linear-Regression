@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import numpy as np
+from model import model
 from model import StudentPerformanceModel
 from data_preprocessing import preprocess_data, split_data
 from sample_data import create_sample_dataset
